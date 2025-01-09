@@ -36,9 +36,11 @@ CREATE TABLE User (
   CREATE TABLE UserProducto (
    user_id INT NOT NULL REFERENCES user,
    producto_id INT NOT NULL REFERENCES producto,
-   cantidad INT CHECK ( cantidad > 0 AND cantidad < 1000 )
+   cantidad INT CHECK ( cantidad > 0 AND cantidad < 1000 ),
+   PRIMARY KEY(user_id,producto_id)
    );
 
+INSERT INTO User(username,nombre,apellidos) VALUES('mariodamas','Mario', 'Damas');
    
 INSERT INTO Equipo (equipo_id, nombre_equipo, nombre_liga) VALUES ('LEC', 'Lecce', 'Serie A');
 INSERT INTO Equipo (equipo_id, nombre_equipo, nombre_liga) VALUES ('RMA', 'Real Madrid', 'La Liga');
