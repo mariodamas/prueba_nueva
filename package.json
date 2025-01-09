@@ -1,0 +1,26 @@
+{
+  "name": "prueba_nueva",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariodamas/prueba_nueva.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/mariodamas/prueba_nueva/issues"
+  },
+  "homepage": "https://github.com/mariodamas/prueba_nueva#readme",
+  "devDependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0",
+    "nodemon": "^3.1.9"
+  }
+}
