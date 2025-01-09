@@ -1,1 +1,23 @@
-GET http://localhost:3000/productos
+GET http://localhost:3000/productos/1
+
+### GET BY ID
+GET http://localhost:3000/productos/1
+
+### QUITAR DEL CARRITO DEL USUARIO
+DELETE http://localhost:3000/productos/1
+
+### ACTUALIZAR DEL CARRITO
+PATCH http://localhost:3000/productos/1
+Content-Type: application/json
+
+{
+    "cantidad": 5
+}
+
+### MARCAR PRODUCTO COMO FAVORITO
+POST  http://localhost:3000/productos/1
+Content-Type: application/json
+
+{
+    "favorito": 1
+}
