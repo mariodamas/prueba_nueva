@@ -6,11 +6,6 @@ const app = express()
 app.use(json())
 app.disable("X-powered-by")
 
-app.use((req, res, next) => {
-    console.log(`Request URL: ${req.url}`)
-    next()
-})
-
 app.use('/productos',productoRouter)
 
 app.listen(PORT, () => {
