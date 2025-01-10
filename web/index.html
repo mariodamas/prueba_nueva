@@ -5,16 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
     <style>
-        article{
+        body {
+            font-family: Arial, sans-serif;
+        }
+        main {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+        article {
             border: 1px solid #ccc;
             padding: 1rem;
             margin-bottom: 1rem;
+            position: relative;
         }
         img {
             height: auto;
-            width: 320px;
+            width: 100%;
             max-width: 100%;
-          }
+        }
+        .heart-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: red;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -28,7 +46,10 @@
                         return `
                             <article data-id="${producto.producto_id}">
                                 <h2>${producto.nombre_producto}</h2>
-                                <img src="${producto.imagen_url}" alt="${producto.nombre_producto}">
+                                <div class="image-container">
+                                    <img src="${producto.imagen_url}" alt="${producto.nombre_producto}">
+                                    <div class="heart-icon">❤️</div>
+                                </div>
                                 <p>${producto.tipo_producto}</p>
                                 <button>Añadir a favoritos</button>
                             </article>
@@ -45,17 +66,19 @@
                             fetch(`http://localhost:3000/productos/${id}`, {
                                 method: 'POST',
                                 headers: {
-                                    'Content-Type' : 'application/json'
+                                    'Content-Type': 'application/json'
                                 },
-                                body: JSON.stringify({favorito: 1})
+                                body: JSON.stringify({ favorito: 1 })
                             })
                             .then(response => {
-                                if(response.ok){
+                                if (response.ok) {
                                     alert('Añadido correctamente a favoritos')
-                                }else{
+                                    // Mostrar el corazón en la esquina superior derecha de la imagen
+                                    const heartIcon = article.querySelector('.heart-icon')
+                                    heartIcon.style.display = 'block'
+                                } else {
                                     alert('Error al añadir a favoritos')
                                 }
-                                
                             })
                         }
                     })

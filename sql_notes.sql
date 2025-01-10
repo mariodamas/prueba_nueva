@@ -15,9 +15,9 @@ CREATE TABLE User (
  CREATE TABLE Producto (
  producto_id INT AUTO_INCREMENT PRIMARY KEY, 
  nombre_producto VARCHAR(255) NOT NULL,
- tipo_producto VARCHAR(10) NOT NULL,
- año_producto VARCHAR(5) NOT NULL,
- imagen_url VARCHAR(500) NOT NULL,
+ tipo_producto VARCHAR(50) NOT NULL,
+ año_producto VARCHAR(10) NOT NULL,
+ imagen_url VARCHAR(16383) NOT NULL,
  equipo_id VARCHAR(3) NOT NULL REFERENCES equipos,
  favorito BOOLEAN DEFAULT FALSE
  );
