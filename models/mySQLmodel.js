@@ -50,6 +50,7 @@ export class ProductModel{
     }
 
     static async updateFavorito({id,input}){
+        console.log(input.favorito)
         let resultado = true
         try{
             await connection.query('UPDATE Producto SET favorito = ? WHERE producto_id = ? ', [input.favorito , id] ) //provisional hasta hacer middleware con getUserId

@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width-device-width , initial-scale-1.0">
-        <title>Socios Brand</title>
-        <style>
-            article{
-                border: 1px solid #ccc;
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-            img {
-                height: auto;
-                width: 320px;
-                max-width: 100%;
-              }
-        </style>
-        <script type="module">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <style>
+        article{
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        img {
+            height: auto;
+            width: 320px;
+            max-width: 100%;
+          }
+    </style>
+</head>
+<body>
+    <main></main>
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
             fetch('http://localhost:3000/productos/')
-              .then(res => res.json())
-              .then(productos => {
-                const html = productos.map(producto => {
-                  return `
-                    <article data-id="${producto.id}">
-                      <h2>${producto.nombre_producto}</h2>
-                      <img src="${producto.imagen_url}" alt="${producto.nombre_producto}">
-                      <p>${producto.tipo_producto}</p>
-        
-                      <button>Añadir a favoritos</button>
-                    </article>
-                  `
-                }).join('')
-        
-                document.querySelector('main').innerHTML = html
-        
-                document.addEventListener('click', e => {
-                  if (e.target.matches('button')) {
-                    const article = e.target.closest('article')
-                    const id = article.dataset.id
-        
-                    fetch(`http://localhost:1234/movies/${id}`, {
-                      method: 'POST'
-                    })
-                      .then(res => {
-                        if (res.ok) {
-                        }
-                      })
-                    }
-                  
-                })
-              })
-          </script>
-    </head>
-</html>
+                .then(res => res.json())
+                .then(productos => {
+                    const html = productos.map(producto => {
+                        return `
+                            <article data-id="${producto.producto_id}">
+                                <h2>${producto.nombre_producto}</h2>
+                                <img src="${producto.imagen_url}" alt="${producto.nombre_producto}">
+                                <p>${producto.tipo_producto}</p>
+                                <button>Añadir a favoritos</button>
+                            </article>
+                        `
+                    }).join('')
 
+                    document.querySelector('main').innerHTML = html
+
+                    document.addEventListener('click', e => {
+                        if (e.target.matches('button')) {
+                            const article = e.target.closest('article')
+                            const id = article.dataset.id
+
+                            fetch(`http://localhost:3000/productos/${id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type' : 'application/json'
+                                },
+                                body: JSON.stringify({favorito: 1})
+                            })
+                            .then(response => {
+                                if(response.ok){
+                                    alert('Añadido correctamente a favoritos')
+                                }else{
+                                    alert('Error al añadir a favoritos')
+                                }
+                                
+                            })
+                        }
+                    })
+                })
+        })
+    </script>
+</body>
+</html>
